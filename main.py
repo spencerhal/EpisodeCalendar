@@ -64,17 +64,18 @@ def generate_ical(films):
         
         if release_date < datetime.now().date() - timedelta(days=30): continue
 
+        # Ensure slug formatting is completely clean
+        slug = film['slug'].strip("/")
+        full_url = f"https://letterboxd.com/film/{slug}/"
+
         event = Event()
         event.add("summary", f"🎬 {film['title']}")
         event.add("dtstart", release_date)
         event.add("dtend", release_date + timedelta(days=1))
-        event.add("description", f"https://letterboxd.com/film/{film['slug']}/")
+        event.add("description", full_url)
+        event.add("url", full_url) # Added explicit URL property for better calendar app support
         event.add("uid", f"letterboxd-{tmdb_id}@script.local")
         cal.add_component(event)
 
     with open("watchlist_releases.ics", "wb") as f:
         f.write(cal.to_ical())
-
-if __name__ == "__main__":
-    watchlist = get_watchlist_films()
-    generate_ical(watchlist)
