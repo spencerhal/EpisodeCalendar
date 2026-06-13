@@ -16,9 +16,12 @@ def get_watchlist_films():
         response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
         soup = BeautifulSoup(response.text, "html.parser")
         for poster in soup.find_all("div", class_="poster"):
-            title = poster.find("img")["alt"]
-            slug = poster['data-film-slug']
-            films.append({"title": title, "slug": slug})
+            img_tag = poster.find("img")
+            # Skip if no image tag or alt text exists
+            if img_tag and img_tag.get("alt"):
+                title = img_tag["alt"]
+                slug = poster.get('data-film-slug', '')
+                films.append({"title": title, "slug": slug})
         next_link = soup.find("a", class_="next")
         url = f"https://letterboxd.com{next_link['href']}" if next_link else None
     return films
