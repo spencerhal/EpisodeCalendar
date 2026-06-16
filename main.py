@@ -14,7 +14,6 @@ def get_watchlist_films():
     films = []
     
     try:
-        # Utilize letterboxdpy to cleanly extract your watchlist dictionary object
         w = Watchlist(USERNAME)
         watchlist_data = w.movies
         
@@ -85,7 +84,7 @@ def generate_ical(films):
         full_url = f"https://letterboxd.com/film/{slug}/" if slug else "https://letterboxd.com"
 
         event = Event()
-        event.add("summary", f"🎬 {film['title']}")
+        event.add("summary", f"{film['title']}")
         event.add("dtstart", release_date)
         event.add("dtend", release_date + timedelta(days=1))
         event.add("description", full_url)
