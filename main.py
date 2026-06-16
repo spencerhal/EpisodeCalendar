@@ -10,8 +10,8 @@ TMDB_API_KEY = os.environ.get("TMDB_API_KEY")
 REGION = "US" 
 
 def get_watchlist_films():
-    # Base URL for the sorting mechanism
-    url = f"https://letterboxd.com/{USERNAME}/watchlist/ajax/by/added-newest/"
+    # Use the clean, standard URL pattern with Letterboxd's explicit sorting query parameter
+    url = f"https://letterboxd.com/{USERNAME}/watchlist/by/added-newest/"
     films = []
     page = 1
     
@@ -27,31 +27,35 @@ def get_watchlist_films():
         soup = BeautifulSoup(response.text, "html.parser")
         page_films_count = 0
         
+        # Modern Letterboxd markup uses li elements with 'poster-container'
         for item in soup.find_all("li", class_="poster-container"):
-            poster_div = item.find("div", class_="poster")
+            # Target the modern React component attributes inside the internal div
+            poster_div = item.find("div", class_=lambda x: x and 'poster' in x)
             if not poster_div:
                 continue
-                
-            img_tag = poster_div.find("img")
-            if img_tag and img_tag.get("alt"):
-                title = img_tag["alt"]
-                slug = poster_div.get('data-film-slug', '')
+            
+            # Letterboxd updated standard properties to data-item-* tags
+            title = poster_div.get("data-item-name") or poster_div.get("data-film-name")
+            slug = poster_div.get("data-item-slug") or poster_div.get("data-film-slug") or ""
+            
+            # Fallback check if data attributes are obscured but an img fallback block exists
+            if not title:
+                img_tag = poster_div.find("img")
+                if img_tag and img_tag.get("alt"):
+                    title = img_tag["alt"]
+
+            if title:
                 films.append({"title": title, "slug": slug})
                 page_films_count += 1
         
         print(f"Found {page_films_count} films on page {page}.")
         
-        # Handle the custom layout of pagination links cleanly
+        # Traverse standard pagination footer
         next_link = soup.find("a", class_="next")
         if next_link:
             page += 1
             next_path = next_link['href']
-            # Build a completely clean path combining ajax, sort, and the page route
-            if "page/" in next_path:
-                page_num = next_path.split("page/")[-1].strip("/")
-                url = f"https://letterboxd.com/{USERNAME}/watchlist/ajax/by/added-newest/page/{page_num}/"
-            else:
-                url = f"https://letterboxd.com{next_path}"
+            url = f"https://letterboxd.com{next_path}"
         else:
             url = None
             
@@ -103,12 +107,12 @@ def generate_ical(films):
             
         tmdb_id, release_date = tmdb_info
         
-        # Only include films coming out soon, or released in the last 30 days
+        # Filter for future/recent releases
         if release_date < datetime.now().date() - timedelta(days=30): 
             continue
 
         slug = film['slug'].strip("/")
-        full_url = f"https://letterboxd.com/film/{slug}/"
+        full_url = f"https://letterboxd.com/film/{slug}/" if slug else "https://letterboxd.com"
 
         event = Event()
         event.add("summary", f"{film['title']}")
@@ -120,7 +124,6 @@ def generate_ical(films):
         cal.add_component(event)
         added_events += 1
 
-    # Force overwrite file completely
     if os.path.exists("watchlist_releases.ics"):
         os.remove("watchlist_releases.ics")
 
