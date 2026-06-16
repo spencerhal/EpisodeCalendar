@@ -2,7 +2,7 @@ name: Update Calendar Feed
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight
+    - cron: '0 0 * * 0,3' # Runs every Sunday (0) and Wednesday (3) at midnight
   workflow_dispatch: # Allows you to run it manually
 
 jobs:
