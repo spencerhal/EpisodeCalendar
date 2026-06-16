@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from bs4 import BeautifulSoup
 from icalendar import Calendar, Event
@@ -10,35 +11,37 @@ TMDB_API_KEY = os.environ.get("TMDB_API_KEY")
 REGION = "US" 
 
 def get_watchlist_films():
-    # Use the clean, standard URL pattern with Letterboxd's explicit sorting query parameter
-    url = f"https://letterboxd.com/{USERNAME}/watchlist/by/added-newest/"
+    # Use the standard web URL
+    target_url = f"https://letterboxd.com/{USERNAME}/watchlist/by/added-newest/"
+    
+    # Route through allorigins free proxy to entirely bypass Cloudflare's 403 blocks
+    proxy_url = f"https://api.allorigins.win/get?url={requests.utils.quote(target_url)}"
     films = []
-    page = 1
     
-    print(f"--- Starting Letterboxd Scrape for user: {USERNAME} ---")
+    print(f"--- Fetching Letterboxd Watchlist via Proxy for user: {USERNAME} ---")
     
-    while url:
-        print(f"Scraping Page {page}: {url}")
-        response = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"})
+    try:
+        response = requests.get(proxy_url, headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"})
         if response.status_code != 200:
-            print(f"Error: Received status code {response.status_code} from Letterboxd.")
-            break
+            print(f"Error: Proxy returned status code {response.status_code}")
+            return films
             
-        soup = BeautifulSoup(response.text, "html.parser")
+        # Allorigins packages the HTML inside a JSON object wrapper under the 'contents' key
+        json_data = response.json()
+        html_content = json_data.get("contents", "")
+        
+        soup = BeautifulSoup(html_content, "html.parser")
         page_films_count = 0
         
-        # Modern Letterboxd markup uses li elements with 'poster-container'
         for item in soup.find_all("li", class_="poster-container"):
-            # Target the modern React component attributes inside the internal div
             poster_div = item.find("div", class_=lambda x: x and 'poster' in x)
             if not poster_div:
                 continue
             
-            # Letterboxd updated standard properties to data-item-* tags
+            # Extract names using standard fallback attributes
             title = poster_div.get("data-item-name") or poster_div.get("data-film-name")
             slug = poster_div.get("data-item-slug") or poster_div.get("data-film-slug") or ""
             
-            # Fallback check if data attributes are obscured but an img fallback block exists
             if not title:
                 img_tag = poster_div.find("img")
                 if img_tag and img_tag.get("alt"):
@@ -47,19 +50,12 @@ def get_watchlist_films():
             if title:
                 films.append({"title": title, "slug": slug})
                 page_films_count += 1
+                
+        print(f"Successfully parsed {page_films_count} films from your watchlist home layout.")
         
-        print(f"Found {page_films_count} films on page {page}.")
+    except Exception as e:
+        print(f"❌ Scraping wrapper error: {e}")
         
-        # Traverse standard pagination footer
-        next_link = soup.find("a", class_="next")
-        if next_link:
-            page += 1
-            next_path = next_link['href']
-            url = f"https://letterboxd.com{next_path}"
-        else:
-            url = None
-            
-    print(f"Total films collected from Letterboxd: {len(films)}\n")
     return films
     
 def get_tmdb_release_date(title):
@@ -97,7 +93,7 @@ def generate_ical(films):
     cal.add("version", "2.0")
     cal.add("X-WR-CALNAME", "Letterboxd Watchlist")
 
-    print("--- Matching Films with TMDB Release Dates ---")
+    print("\n--- Matching Films with TMDB Release Dates ---")
     added_events = 0
 
     for film in films:
