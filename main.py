@@ -10,22 +10,42 @@ TMDB_API_KEY = os.environ.get("TMDB_API_KEY")
 REGION = "US" 
 
 def get_watchlist_films():
-    url = f"https://letterboxd.com/{USERNAME}/watchlist/"
+    # Injecting 'by/added-newest/' forces recent additions onto page 1
+    url = f"https://letterboxd.com/{USERNAME}/watchlist/ajax/by/added-newest/"
     films = []
+    
     while url:
         response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
+        if response.status_code != 200:
+            break
+            
         soup = BeautifulSoup(response.text, "html.parser")
-        for poster in soup.find_all("div", class_="poster"):
-            img_tag = poster.find("img")
-            # Skip if no image tag or alt text exists
+        
+        for item in soup.find_all("li", class_="poster-container"):
+            poster_div = item.find("div", class_="poster")
+            if not poster_div:
+                continue
+                
+            img_tag = poster_div.find("img")
             if img_tag and img_tag.get("alt"):
                 title = img_tag["alt"]
-                slug = poster.get('data-film-slug', '')
+                slug = poster_div.get('data-film-slug', '')
                 films.append({"title": title, "slug": slug})
+        
+        # Keep pagination working cleanly with the custom sort path
         next_link = soup.find("a", class_="next")
-        url = f"https://letterboxd.com{next_link['href']}" if next_link else None
+        if next_link:
+            next_path = next_link['href']
+            if "/ajax/" not in next_path:
+                next_path = next_path.replace("/watchlist/", "/watchlist/ajax/")
+            if "/by/added-newest/" not in next_path:
+                next_path = next_path.replace("/ajax/", "/ajax/by/added-newest/")
+            url = f"https://letterboxd.com{next_path}"
+        else:
+            url = None
+            
     return films
-
+    
 def get_tmdb_release_date(title):
     search_url = "https://api.themoviedb.org/3/search/movie"
     params = {"api_key": TMDB_API_KEY, "query": title}
