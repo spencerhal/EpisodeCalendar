@@ -61,8 +61,8 @@ URL:https://letterboxd.com/film/dune-part-three/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Spider-Man: Beyond the Spider-Verse
-DTSTART;VALUE=DATE:20270625
-DTEND;VALUE=DATE:20270626
+DTSTART;VALUE=DATE:20270618
+DTEND;VALUE=DATE:20270619
 UID:letterboxd-911916@script.local
 DESCRIPTION:https://letterboxd.com/film/spider-man-beyond-the-spider-verse
  /
