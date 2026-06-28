@@ -3,6 +3,39 @@ VERSION:2.0
 PRODID:-//Letterboxd Tracker//EN
 X-WR-CALNAME:Letterboxd Watchlist
 BEGIN:VEVENT
+SUMMARY:Klara and the Sun
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+UID:letterboxd-858035@script.local
+DESCRIPTION:https://letterboxd.com/film/klara-and-the-sun/
+URL:https://letterboxd.com/film/klara-and-the-sun/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Shaun the Sheep: The Beast of Mossy Bottom
+DTSTART;VALUE=DATE:20260918
+DTEND;VALUE=DATE:20260919
+UID:letterboxd-1477104@script.local
+DESCRIPTION:https://letterboxd.com/film/shaun-the-sheep-the-beast-of-mossy
+ -bottom/
+URL:https://letterboxd.com/film/shaun-the-sheep-the-beast-of-mossy-bottom/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Ray Gunn
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
+UID:letterboxd-940009@script.local
+DESCRIPTION:https://letterboxd.com/film/ray-gunn/
+URL:https://letterboxd.com/film/ray-gunn/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Digger
+DTSTART;VALUE=DATE:20261002
+DTEND;VALUE=DATE:20261003
+UID:letterboxd-1248832@script.local
+DESCRIPTION:https://letterboxd.com/film/digger-2026/
+URL:https://letterboxd.com/film/digger-2026/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Minions & Monsters
 DTSTART;VALUE=DATE:20260701
 DTEND;VALUE=DATE:20260702
