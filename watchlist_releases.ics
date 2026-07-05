@@ -36,14 +36,6 @@ DESCRIPTION:https://letterboxd.com/film/digger-2026/
 URL:https://letterboxd.com/film/digger-2026/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Minions & Monsters
-DTSTART;VALUE=DATE:20260701
-DTEND;VALUE=DATE:20260702
-UID:letterboxd-1315772@script.local
-DESCRIPTION:https://letterboxd.com/film/minions-monsters-2026/
-URL:https://letterboxd.com/film/minions-monsters-2026/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:One Night Only
 DTSTART;VALUE=DATE:20260807
 DTEND;VALUE=DATE:20260808
@@ -132,6 +124,14 @@ DTEND;VALUE=DATE:20280617
 UID:letterboxd-1327821@script.local
 DESCRIPTION:https://letterboxd.com/film/incredibles-3/
 URL:https://letterboxd.com/film/incredibles-3/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Looking for Alaska
+DTSTART;VALUE=DATE:20260704
+DTEND;VALUE=DATE:20260705
+UID:letterboxd-1340587@script.local
+DESCRIPTION:https://letterboxd.com/film/looking-for-alaska/
+URL:https://letterboxd.com/film/looking-for-alaska/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:The Death of Robin Hood
