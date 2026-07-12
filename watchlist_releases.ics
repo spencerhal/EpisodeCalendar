@@ -3,6 +3,15 @@ VERSION:2.0
 PRODID:-//Letterboxd Tracker//EN
 X-WR-CALNAME:Letterboxd Watchlist
 BEGIN:VEVENT
+SUMMARY:Snoopy Presents: There's No Place Like Home\, Snoopy
+DTSTART;VALUE=DATE:20260730
+DTEND;VALUE=DATE:20260731
+UID:letterboxd-1698575@script.local
+DESCRIPTION:https://letterboxd.com/film/snoopy-presents-theres-no-place-li
+ ke-home/
+URL:https://letterboxd.com/film/snoopy-presents-theres-no-place-like-home/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Klara and the Sun
 DTSTART;VALUE=DATE:20261023
 DTEND;VALUE=DATE:20261024
@@ -58,14 +67,6 @@ DTEND;VALUE=DATE:20260801
 UID:letterboxd-1288059@script.local
 DESCRIPTION:https://letterboxd.com/film/i-want-your-sex/
 URL:https://letterboxd.com/film/i-want-your-sex/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:Supergirl
-DTSTART;VALUE=DATE:20260626
-DTEND;VALUE=DATE:20260627
-UID:letterboxd-1081003@script.local
-DESCRIPTION:https://letterboxd.com/film/supergirl-2026/
-URL:https://letterboxd.com/film/supergirl-2026/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:The Hunger Games: Sunrise on the Reaping
