@@ -3,6 +3,23 @@ VERSION:2.0
 PRODID:-//Letterboxd Tracker//EN
 X-WR-CALNAME:Letterboxd Watchlist
 BEGIN:VEVENT
+SUMMARY:Behemoth!
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261205
+UID:letterboxd-1452168@script.local
+DESCRIPTION:https://letterboxd.com/film/behemoth-1/
+URL:https://letterboxd.com/film/behemoth-1/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Gail Daughtry and the Celebrity Sex Pass
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+UID:letterboxd-1476682@script.local
+DESCRIPTION:https://letterboxd.com/film/gail-daughtry-and-the-celebrity-se
+ x-pass/
+URL:https://letterboxd.com/film/gail-daughtry-and-the-celebrity-sex-pass/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Snoopy Presents: There's No Place Like Home\, Snoopy
 DTSTART;VALUE=DATE:20260730
 DTEND;VALUE=DATE:20260731
@@ -125,6 +142,15 @@ DTEND;VALUE=DATE:20280617
 UID:letterboxd-1327821@script.local
 DESCRIPTION:https://letterboxd.com/film/incredibles-3/
 URL:https://letterboxd.com/film/incredibles-3/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Untitled Star Wars "New Jedi Order" Film
+DTSTART;VALUE=DATE:20271217
+DTEND;VALUE=DATE:20271218
+UID:letterboxd-949966@script.local
+DESCRIPTION:https://letterboxd.com/film/untitled-star-wars-new-jedi-order-
+ film/
+URL:https://letterboxd.com/film/untitled-star-wars-new-jedi-order-film/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Looking for Alaska
