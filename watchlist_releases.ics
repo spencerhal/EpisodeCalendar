@@ -7,8 +7,8 @@ SUMMARY:Behemoth!
 DTSTART;VALUE=DATE:20261204
 DTEND;VALUE=DATE:20261205
 UID:letterboxd-1452168@script.local
-DESCRIPTION:https://letterboxd.com/film/behemoth-1/
-URL:https://letterboxd.com/film/behemoth-1/
+DESCRIPTION:https://letterboxd.com/film/behemoth-2026/
+URL:https://letterboxd.com/film/behemoth-2026/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Gail Daughtry and the Celebrity Sex Pass
@@ -70,14 +70,6 @@ DESCRIPTION:https://letterboxd.com/film/one-night-only-2026/
 URL:https://letterboxd.com/film/one-night-only-2026/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:The Invite
-DTSTART;VALUE=DATE:20260626
-DTEND;VALUE=DATE:20260627
-UID:letterboxd-950028@script.local
-DESCRIPTION:https://letterboxd.com/film/the-invite-2026/
-URL:https://letterboxd.com/film/the-invite-2026/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:I Want Your Sex
 DTSTART;VALUE=DATE:20260731
 DTEND;VALUE=DATE:20260801
@@ -112,20 +104,12 @@ DESCRIPTION:https://letterboxd.com/film/spider-man-beyond-the-spider-verse
 URL:https://letterboxd.com/film/spider-man-beyond-the-spider-verse/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Coyote vs ACME
+SUMMARY:Coyote vs. Acme
 DTSTART;VALUE=DATE:20260828
 DTEND;VALUE=DATE:20260829
 UID:letterboxd-1204680@script.local
 DESCRIPTION:https://letterboxd.com/film/coyote-vs-acme/
 URL:https://letterboxd.com/film/coyote-vs-acme/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:The Odyssey
-DTSTART;VALUE=DATE:20260717
-DTEND;VALUE=DATE:20260718
-UID:letterboxd-1368337@script.local
-DESCRIPTION:https://letterboxd.com/film/the-odyssey-2026/
-URL:https://letterboxd.com/film/the-odyssey-2026/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Verity
@@ -144,29 +128,12 @@ DESCRIPTION:https://letterboxd.com/film/incredibles-3/
 URL:https://letterboxd.com/film/incredibles-3/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Untitled Star Wars "New Jedi Order" Film
-DTSTART;VALUE=DATE:20271217
-DTEND;VALUE=DATE:20271218
-UID:letterboxd-949966@script.local
-DESCRIPTION:https://letterboxd.com/film/untitled-star-wars-new-jedi-order-
- film/
-URL:https://letterboxd.com/film/untitled-star-wars-new-jedi-order-film/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:Looking for Alaska
 DTSTART;VALUE=DATE:20260704
 DTEND;VALUE=DATE:20260705
 UID:letterboxd-1340587@script.local
 DESCRIPTION:https://letterboxd.com/film/looking-for-alaska/
 URL:https://letterboxd.com/film/looking-for-alaska/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:The Death of Robin Hood
-DTSTART;VALUE=DATE:20260619
-DTEND;VALUE=DATE:20260620
-UID:letterboxd-1284465@script.local
-DESCRIPTION:https://letterboxd.com/film/the-death-of-robin-hood/
-URL:https://letterboxd.com/film/the-death-of-robin-hood/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:The Lord of the Rings: The Hunt for Gollum
