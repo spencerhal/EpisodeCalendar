@@ -68,14 +68,6 @@ DESCRIPTION:https://letterboxd.com/film/one-night-only-2026/
 URL:https://letterboxd.com/film/one-night-only-2026/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:I Want Your Sex
-DTSTART;VALUE=DATE:20260731
-DTEND;VALUE=DATE:20260801
-UID:letterboxd-1288059@script.local
-DESCRIPTION:https://letterboxd.com/film/i-want-your-sex/
-URL:https://letterboxd.com/film/i-want-your-sex/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:It Ends
 DTSTART;VALUE=DATE:20260821
 DTEND;VALUE=DATE:20260822
@@ -141,5 +133,13 @@ UID:letterboxd-1090869@script.local
 DESCRIPTION:https://letterboxd.com/film/the-lord-of-the-rings-the-hunt-for
  -gollum/
 URL:https://letterboxd.com/film/the-lord-of-the-rings-the-hunt-for-gollum/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Ghost
+DTSTART;VALUE=DATE:20261002
+DTEND;VALUE=DATE:20261003
+UID:letterboxd-1393326@script.local
+DESCRIPTION:https://letterboxd.com/film/ghost/
+URL:https://letterboxd.com/film/ghost/
 END:VEVENT
 END:VCALENDAR
