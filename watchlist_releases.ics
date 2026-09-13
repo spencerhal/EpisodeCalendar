@@ -3,6 +3,23 @@ VERSION:2.0
 PRODID:-//Letterboxd Tracker//EN
 X-WR-CALNAME:Letterboxd Watchlist
 BEGIN:VEVENT
+SUMMARY:Your Mother Your Mother Your Mother
+DTSTART;VALUE=DATE:20260925
+DTEND;VALUE=DATE:20260926
+UID:letterboxd-1437396@script.local
+DESCRIPTION:https://letterboxd.com/film/your-mother-your-mother-your-mothe
+ r/
+URL:https://letterboxd.com/film/your-mother-your-mother-your-mother/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Wildwood
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+UID:letterboxd-791523@script.local
+DESCRIPTION:https://letterboxd.com/film/wildwood-2026/
+URL:https://letterboxd.com/film/wildwood-2026/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Godzilla Minus Zero
 DTSTART;VALUE=DATE:20261106
 DTEND;VALUE=DATE:20261107
@@ -126,8 +143,8 @@ URL:https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Dune: Part Three
-DTSTART;VALUE=DATE:20261215
-DTEND;VALUE=DATE:20261216
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
 UID:letterboxd-1170608@script.local
 DESCRIPTION:https://letterboxd.com/film/dune-part-three/
 URL:https://letterboxd.com/film/dune-part-three/
