@@ -3,6 +3,22 @@ VERSION:2.0
 PRODID:-//Letterboxd Tracker//EN
 X-WR-CALNAME:Letterboxd Watchlist
 BEGIN:VEVENT
+SUMMARY:If I Go Will They Miss Me
+DTSTART;VALUE=DATE:20260911
+DTEND;VALUE=DATE:20260912
+UID:letterboxd-1596248@script.local
+DESCRIPTION:https://letterboxd.com/film/if-i-go-will-they-miss-me-2026/
+URL:https://letterboxd.com/film/if-i-go-will-they-miss-me-2026/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Mr. Irrelevant
+DTSTART;VALUE=DATE:20261225
+DTEND;VALUE=DATE:20261226
+UID:letterboxd-1372443@script.local
+DESCRIPTION:https://letterboxd.com/film/mr-irrelevant/
+URL:https://letterboxd.com/film/mr-irrelevant/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Your Mother Your Mother Your Mother
 DTSTART;VALUE=DATE:20260925
 DTEND;VALUE=DATE:20260926
