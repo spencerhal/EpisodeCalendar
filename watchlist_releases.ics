@@ -3,6 +3,14 @@ VERSION:2.0
 PRODID:-//Letterboxd Tracker//EN
 X-WR-CALNAME:Letterboxd Watchlist
 BEGIN:VEVENT
+SUMMARY:The Debut
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+UID:letterboxd-1391239@script.local
+DESCRIPTION:https://letterboxd.com/film/the-debut-2026/
+URL:https://letterboxd.com/film/the-debut-2026/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:If I Go Will They Miss Me
 DTSTART;VALUE=DATE:20260911
 DTEND;VALUE=DATE:20260912
@@ -42,14 +50,6 @@ DTEND;VALUE=DATE:20261107
 UID:letterboxd-1381071@script.local
 DESCRIPTION:https://letterboxd.com/film/godzilla-minus-zero/
 URL:https://letterboxd.com/film/godzilla-minus-zero/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:Resident Evil
-DTSTART;VALUE=DATE:20260918
-DTEND;VALUE=DATE:20260919
-UID:letterboxd-1423191@script.local
-DESCRIPTION:https://letterboxd.com/film/untitled-resident-evil-reboot/
-URL:https://letterboxd.com/film/untitled-resident-evil-reboot/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:I Play Rocky
@@ -173,14 +173,6 @@ UID:letterboxd-911916@script.local
 DESCRIPTION:https://letterboxd.com/film/spider-man-beyond-the-spider-verse
  /
 URL:https://letterboxd.com/film/spider-man-beyond-the-spider-verse/
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:Coyote vs. Acme
-DTSTART;VALUE=DATE:20260828
-DTEND;VALUE=DATE:20260829
-UID:letterboxd-1204680@script.local
-DESCRIPTION:https://letterboxd.com/film/coyote-vs-acme/
-URL:https://letterboxd.com/film/coyote-vs-acme/
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Verity
