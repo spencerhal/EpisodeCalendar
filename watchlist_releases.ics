@@ -141,14 +141,6 @@ DESCRIPTION:https://letterboxd.com/film/josephine-2026/
 URL:https://letterboxd.com/film/josephine-2026/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:It Ends
-DTSTART;VALUE=DATE:20260821
-DTEND;VALUE=DATE:20260822
-UID:letterboxd-1422011@script.local
-DESCRIPTION:https://letterboxd.com/film/it-ends/
-URL:https://letterboxd.com/film/it-ends/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:The Hunger Games: Sunrise on the Reaping
 DTSTART;VALUE=DATE:20261120
 DTEND;VALUE=DATE:20261121
