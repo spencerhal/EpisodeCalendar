@@ -34,7 +34,10 @@ jobs:
       run: python main.py
 
     - name: Pull latest remote changes
-      run: git pull --rebase origin main
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git pull --rebase origin main
 
     - name: Commit and push changes
       uses: stefanzweifel/git-auto-commit-action@v5
@@ -42,4 +45,4 @@ jobs:
         commit_message: "Automated TV Episode Calendar Update [skip ci]"
         file_pattern: 'tv_episode_calendar.ics'
         skip_dirty_check: false
-        skip_fetch: false
+        skip_fetch: true
