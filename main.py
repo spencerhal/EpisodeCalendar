@@ -12,7 +12,7 @@ import json
 import os
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import requests
 from icalendar import Calendar, Event
@@ -24,6 +24,9 @@ OUTPUT_FILE = "tv_episode_calendar.ics"
 
 # Set to True if you want season 0 (specials) included.
 INCLUDE_SPECIALS = False
+
+# Only keep episodes from the last 550 days
+EPISODE_DAYS_WINDOW = 550
 
 
 def tmdb_get(path, params=None):
@@ -99,15 +102,22 @@ def build_calendar(all_episodes):
     cal.add("x-wr-calname", "TV Episode Calendar")
     cal.add("x-wr-timezone", "UTC")
 
+    # Calculate the cutoff date (550 days ago from today)
+    cutoff_date = datetime.utcnow().date() - timedelta(days=EPISODE_DAYS_WINDOW)
+
     for ep in all_episodes:
         try:
             date_obj = datetime.strptime(ep["air_date"], "%Y-%m-%d").date()
         except ValueError:
             continue
 
+        # Skip episodes outside the 550-day window
+        if date_obj < cutoff_date:
+            continue
+
         event = Event()
-        code = f"S{ep['season_number']:02d}E{ep['episode_number']:02d}"
-        event.add("summary", f"{ep['show_name']} - {code} - {ep['episode_name']}")
+        code = f"s{ep['season_number']}e{ep['episode_number']}"
+        event.add("summary", f"{ep['show_name']} - {code}")
         event.add("dtstart", date_obj)
         event.add("dtend", date_obj)
         event.add(
