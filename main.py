@@ -6,6 +6,10 @@ Reads:  shows.json           -> [{"id": 1399, "name": "Game of Thrones"}, ...]
 Writes: tv_episode_calendar.ics
 
 Requires env var TMDB_API_KEY (TMDB v3 API key).
+
+Optionally set STREAMING_AVAILABILITY_API_KEY (free key from
+https://developers.movieofthenight.com) to link events straight to the show on
+its streaming service instead of to TMDB's watch page.
 """
 
 import json
@@ -22,6 +26,18 @@ TMDB_BASE = "https://api.themoviedb.org/3"
 SHOWS_FILE = "shows.json"
 OUTPUT_FILE = "tv_episode_calendar.ics"
 
+# TMDB's provider data comes from JustWatch, and that agreement lets TMDB name
+# the service but not link into it - the only URL it exposes is its own watch
+# page. Direct links come from this second API instead; without a key we fall
+# back to the TMDB page.
+STREAMING_API_KEY = os.environ.get("STREAMING_AVAILABILITY_API_KEY")
+STREAMING_BASE = "https://api.movieofthenight.com/v4"
+STREAMING_COUNTRY = "us"
+
+# Preferred service when a show is on more than one, matched case-insensitively
+# against the service name.
+PREFERRED_SERVICE = "youtube tv"
+
 # Set to True if you want season 0 (specials) included.
 INCLUDE_SPECIALS = False
 
@@ -30,6 +46,10 @@ EPISODE_DAYS_WINDOW = 550
 
 # Cache for watch providers per show to avoid redundant API calls
 WATCH_PROVIDERS_CACHE = {}
+
+# Flipped once the streaming API reports we are out of quota, so one 429 does
+# not turn into one failed request per remaining show.
+_streaming_quota_exhausted = False
 
 
 def tmdb_get(path, params=None):
@@ -63,39 +83,99 @@ def load_shows():
     return shows
 
 
+def _pick_streaming_option(options):
+    """Choose the best option: watchable on a subscription beats pay-per-view."""
+    included = [o for o in options if o.get("type") in ("subscription", "free", "addon")]
+    candidates = included or options
+    if not candidates:
+        return None
+
+    for option in candidates:
+        if PREFERRED_SERVICE in option.get("service", {}).get("name", "").lower():
+            return option
+    return candidates[0]
+
+
+def get_direct_streaming_link(show_id):
+    """Deep link straight to the show on its streaming service, or None.
+
+    Returns None whenever the lookup cannot be trusted - no key, show not
+    indexed, quota gone, API down - so the caller can fall back to TMDB.
+    """
+    global _streaming_quota_exhausted
+
+    if not STREAMING_API_KEY or _streaming_quota_exhausted:
+        return None
+
+    try:
+        resp = requests.get(
+            f"{STREAMING_BASE}/shows/tv/{show_id}",
+            params={"country": STREAMING_COUNTRY, "series_granularity": "show"},
+            headers={"X-API-Key": STREAMING_API_KEY},
+            timeout=30,
+        )
+        if resp.status_code == 404:
+            return None
+        if resp.status_code == 429:
+            _streaming_quota_exhausted = True
+            print(
+                "  Streaming API quota exhausted - using TMDB links from here on.",
+                file=sys.stderr,
+            )
+            return None
+        resp.raise_for_status()
+        options = resp.json().get("streamingOptions", {}).get(STREAMING_COUNTRY, [])
+    except (requests.RequestException, ValueError) as e:
+        print(f"  Streaming lookup failed for show {show_id}: {e}", file=sys.stderr)
+        return None
+
+    option = _pick_streaming_option(options)
+    if not option or not option.get("link"):
+        return None
+
+    return {
+        "link": option["link"],
+        "provider": option.get("service", {}).get("name"),
+    }
+
+
 def get_show_watch_info(show_id):
-    """Fetches streaming availability, prioritizing YouTube TV."""
+    """Where to watch a show: a direct service link if we can get one, else TMDB."""
     if show_id in WATCH_PROVIDERS_CACHE:
         return WATCH_PROVIDERS_CACHE[show_id]
 
-    link = None
-    provider_name = None
+    res = get_direct_streaming_link(show_id)
 
-    try:
-        data = tmdb_get(f"/tv/{show_id}/watch/providers")
-        us_providers = data.get("results", {}).get("US", {})
-        tmdb_link = us_providers.get("link")
+    if res is None:
+        link = None
+        provider_name = None
 
-        providers = us_providers.get("flatrate", []) + us_providers.get("free", [])
-        
-        # Check for YouTube TV first
-        for provider in providers:
-            if "youtube tv" in provider.get("provider_name", "").lower():
-                provider_name = provider.get("provider_name")
+        try:
+            data = tmdb_get(f"/tv/{show_id}/watch/providers")
+            us_providers = data.get("results", {}).get("US", {})
+            tmdb_link = us_providers.get("link")
+
+            providers = us_providers.get("flatrate", []) + us_providers.get("free", [])
+
+            # Check for YouTube TV first
+            for provider in providers:
+                if PREFERRED_SERVICE in provider.get("provider_name", "").lower():
+                    provider_name = provider.get("provider_name")
+                    link = tmdb_link
+                    break
+
+            # Fallback to the first available streaming provider if YouTube TV isn't listed
+            if not provider_name and providers:
+                provider_name = providers[0].get("provider_name")
                 link = tmdb_link
-                break
+            elif not provider_name and tmdb_link:
+                link = tmdb_link
 
-        # Fallback to the first available streaming provider if YouTube TV isn't listed
-        if not provider_name and providers:
-            provider_name = providers[0].get("provider_name")
-            link = tmdb_link
-        elif not provider_name and tmdb_link:
-            link = tmdb_link
+        except requests.HTTPError:
+            pass
 
-    except requests.HTTPError:
-        pass
+        res = {"link": link, "provider": provider_name}
 
-    res = {"link": link, "provider": provider_name}
     WATCH_PROVIDERS_CACHE[show_id] = res
     return res
 
@@ -188,6 +268,12 @@ def main():
     if not TMDB_API_KEY:
         print("ERROR: TMDB_API_KEY environment variable is not set.", file=sys.stderr)
         sys.exit(1)
+
+    if not STREAMING_API_KEY:
+        print(
+            "Note: STREAMING_AVAILABILITY_API_KEY is not set - "
+            "events will link to TMDB instead of the streaming service."
+        )
 
     shows = load_shows()
     if not shows:
