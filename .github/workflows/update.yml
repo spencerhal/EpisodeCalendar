@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
 
     - name: Set up Python
       uses: actions/setup-python@v6
@@ -44,7 +46,7 @@ jobs:
         cp "$FILE" "$RUNNER_TEMP/$FILE"
 
         for attempt in 1 2 3; do
-          git fetch origin main
+          git fetch --force origin main:refs/remotes/origin/main
           git reset --hard origin/main
           cp "$RUNNER_TEMP/$FILE" "$FILE"
           git add "$FILE"
