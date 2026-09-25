@@ -12,7 +12,7 @@ import json
 import os
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import requests
 from icalendar import Calendar, Event
@@ -143,7 +143,8 @@ def build_calendar(all_episodes):
     cal.add("x-wr-calname", "TV Episode Calendar")
     cal.add("x-wr-timezone", "UTC")
 
-    cutoff_date = datetime.utcnow().date() - timedelta(days=EPISODE_DAYS_WINDOW)
+    cutoff_date = datetime.now(timezone.utc).date() - timedelta(days=EPISODE_DAYS_WINDOW)
+    kept = 0
 
     for ep in all_episodes:
         try:
@@ -158,12 +159,12 @@ def build_calendar(all_episodes):
         code = f"s{ep['season_number']}e{ep['episode_number']}"
         event.add("summary", f"{ep['show_name']} - {code}")
         event.add("dtstart", date_obj)
-        event.add("dtend", date_obj)
+        event.add("dtend", date_obj + timedelta(days=1))
         event.add(
             "uid",
             f"tvcal-{ep['show_id']}-{ep['season_number']}-{ep['episode_number']}@tv-calendar",
         )
-        event.add("dtstamp", datetime.utcnow())
+        event.add("dtstamp", datetime.now(timezone.utc))
 
         description_parts = []
         if ep["overview"]:
@@ -178,8 +179,9 @@ def build_calendar(all_episodes):
             event.add("description", "\n".join(description_parts))
 
         cal.add_component(event)
+        kept += 1
 
-    return cal
+    return cal, kept
 
 
 def main():
@@ -189,7 +191,7 @@ def main():
 
     shows = load_shows()
     if not shows:
-        cal = build_calendar([])
+        cal, _ = build_calendar([])
         with open(OUTPUT_FILE, "wb") as f:
             f.write(cal.to_ical())
         return
@@ -202,11 +204,14 @@ def main():
         except requests.HTTPError as e:
             print(f"  Skipping show {show['id']}: {e}", file=sys.stderr)
 
-    cal = build_calendar(all_episodes)
+    cal, kept = build_calendar(all_episodes)
     with open(OUTPUT_FILE, "wb") as f:
         f.write(cal.to_ical())
 
-    print(f"Wrote {len(all_episodes)} episodes across {len(shows)} shows to {OUTPUT_FILE}")
+    print(
+        f"Fetched {len(all_episodes)} episodes across {len(shows)} shows; "
+        f"wrote {kept} within the last {EPISODE_DAYS_WINDOW} days to {OUTPUT_FILE}"
+    )
 
 
 if __name__ == "__main__":
