@@ -1,0 +1,63 @@
+﻿2026-09-25T18:37:17.3609032Z ##[group]Run stefanzweifel/git-auto-commit-action@v5
+2026-09-25T18:37:17.3609463Z with:
+2026-09-25T18:37:17.3609892Z   commit_message: Automated TV Episode Calendar Update [skip ci]
+2026-09-25T18:37:17.3610374Z   file_pattern: tv_episode_calendar.ics
+2026-09-25T18:37:17.3610808Z   skip_dirty_check: false
+2026-09-25T18:37:17.3611145Z   skip_fetch: true
+2026-09-25T18:37:17.3611463Z   repository: .
+2026-09-25T18:37:17.3611818Z   commit_user_name: github-actions[bot]
+2026-09-25T18:37:17.3612318Z   commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+2026-09-25T18:37:17.3612886Z   commit_author: spencerhal <154761850+spencerhal@users.noreply.github.com>
+2026-09-25T18:37:17.3613393Z   skip_checkout: false
+2026-09-25T18:37:17.3613699Z   disable_globbing: false
+2026-09-25T18:37:17.3614234Z   create_branch: false
+2026-09-25T18:37:17.3614590Z   create_git_tag_only: false
+2026-09-25T18:37:17.3614932Z   internal_git_binary: git
+2026-09-25T18:37:17.3615265Z env:
+2026-09-25T18:37:17.3615647Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:17.3616329Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-25T18:37:17.3616816Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:17.3617591Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:17.3618050Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:17.3618633Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-25T18:37:17.3619116Z ##[endgroup]
+2026-09-25T18:37:17.3930636Z Started: bash /home/runner/work/_actions/stefanzweifel/git-auto-commit-action/v5/entrypoint.sh
+2026-09-25T18:37:17.3968222Z INPUT_REPOSITORY value: .
+2026-09-25T18:37:17.3968798Z INPUT_STATUS_OPTIONS: 
+2026-09-25T18:37:17.3969419Z INPUT_FILE_PATTERN: tv_episode_calendar.ics
+2026-09-25T18:37:17.4019903Z INPUT_BRANCH value: 
+2026-09-25T18:37:17.4041225Z Your branch is up to date with 'origin/main'.
+2026-09-25T18:37:17.4042902Z INPUT_ADD_OPTIONS: 
+2026-09-25T18:37:17.4043942Z INPUT_FILE_PATTERN: tv_episode_calendar.ics
+2026-09-25T18:37:17.4353133Z INPUT_COMMIT_OPTIONS: 
+2026-09-25T18:37:17.4354911Z INPUT_COMMIT_USER_NAME: github-actions[bot]
+2026-09-25T18:37:17.4355784Z INPUT_COMMIT_USER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+2026-09-25T18:37:17.4356372Z INPUT_COMMIT_MESSAGE: Automated TV Episode Calendar Update [skip ci]
+2026-09-25T18:37:17.4356994Z INPUT_COMMIT_AUTHOR: spencerhal <154761850+spencerhal@users.noreply.github.com>
+2026-09-25T18:37:17.4418039Z [main 75e6348] Automated TV Episode Calendar Update [skip ci]
+2026-09-25T18:37:17.4418766Z  Author: spencerhal <154761850+spencerhal@users.noreply.github.com>
+2026-09-25T18:37:17.4419221Z  1 file changed, 15406 insertions(+)
+2026-09-25T18:37:17.4419608Z  create mode 100644 tv_episode_calendar.ics
+2026-09-25T18:37:17.4436919Z INPUT_TAGGING_MESSAGE: 
+2026-09-25T18:37:17.4437632Z No tagging message supplied. No tag will be added.
+2026-09-25T18:37:17.4438580Z INPUT_PUSH_OPTIONS: 
+2026-09-25T18:37:18.0576441Z To https://github.com/spencerhal/EpisodeCalendar
+2026-09-25T18:37:18.0577328Z  ! [rejected]        main -> main (fetch first)
+2026-09-25T18:37:18.0578057Z error: failed to push some refs to 'https://github.com/spencerhal/EpisodeCalendar'
+2026-09-25T18:37:18.0584285Z hint: Updates were rejected because the remote contains work that you do not
+2026-09-25T18:37:18.0585262Z hint: have locally. This is usually caused by another repository pushing to
+2026-09-25T18:37:18.0586064Z hint: the same ref. If you want to integrate the remote changes, use
+2026-09-25T18:37:18.0586528Z hint: 'git pull' before pushing again.
+2026-09-25T18:37:18.0587057Z hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+2026-09-25T18:37:18.0602466Z Error: Invalid status code: 1
+2026-09-25T18:37:18.0603274Z     at ChildProcess.<anonymous> (/home/runner/work/_actions/stefanzweifel/git-auto-commit-action/v5/index.js:17:19)
+2026-09-25T18:37:18.0604108Z     at ChildProcess.emit (node:events:509:28)
+2026-09-25T18:37:18.0605117Z     at maybeClose (node:internal/child_process:1141:16)
+2026-09-25T18:37:18.0605648Z     at ChildProcess._handle.onexit (node:internal/child_process:306:5) {
+2026-09-25T18:37:18.0606087Z   code: 1
+2026-09-25T18:37:18.0606386Z }
+2026-09-25T18:37:18.0606835Z Error: Invalid status code: 1
+2026-09-25T18:37:18.0607418Z     at ChildProcess.<anonymous> (/home/runner/work/_actions/stefanzweifel/git-auto-commit-action/v5/index.js:17:19)
+2026-09-25T18:37:18.0608083Z     at ChildProcess.emit (node:events:509:28)
+2026-09-25T18:37:18.0608578Z     at maybeClose (node:internal/child_process:1141:16)
+2026-09-25T18:37:18.0609152Z     at ChildProcess._handle.onexit (node:internal/child_process:306:5)

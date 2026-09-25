@@ -1,0 +1,274 @@
+﻿2026-09-25T18:37:07.9208513Z Current runner version: '2.337.0'
+2026-09-25T18:37:07.9242747Z ##[group]Runner Image Provisioner
+2026-09-25T18:37:07.9244150Z Hosted Compute Agent
+2026-09-25T18:37:07.9244933Z Version: 20260828.587
+2026-09-25T18:37:07.9245968Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-25T18:37:07.9246982Z Build Date: 2026-08-28T16:44:25Z
+2026-09-25T18:37:07.9247840Z Worker ID: {b9873136-9573-4809-abe2-28d06f75c467}
+2026-09-25T18:37:07.9248977Z Azure Region: northcentralus
+2026-09-25T18:37:07.9249788Z ##[endgroup]
+2026-09-25T18:37:07.9251892Z ##[group]Operating System
+2026-09-25T18:37:07.9252753Z Ubuntu
+2026-09-25T18:37:07.9253509Z 24.04.5
+2026-09-25T18:37:07.9254441Z LTS
+2026-09-25T18:37:07.9255156Z ##[endgroup]
+2026-09-25T18:37:07.9255978Z ##[group]Runner Image
+2026-09-25T18:37:07.9256800Z Image: ubuntu-24.04
+2026-09-25T18:37:07.9257609Z Version: 20260920.314.1
+2026-09-25T18:37:07.9259372Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-25T18:37:07.9261422Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-09-25T18:37:07.9262665Z ##[endgroup]
+2026-09-25T18:37:07.9264514Z ##[group]GITHUB_TOKEN Permissions
+2026-09-25T18:37:07.9267945Z Contents: write
+2026-09-25T18:37:07.9268829Z Metadata: read
+2026-09-25T18:37:07.9269579Z ##[endgroup]
+2026-09-25T18:37:07.9272315Z Secret source: Actions
+2026-09-25T18:37:07.9273638Z Cache mode: write
+2026-09-25T18:37:07.9275097Z Prepare workflow directory
+2026-09-25T18:37:07.9617738Z Prepare all required actions
+2026-09-25T18:37:07.9669710Z Getting action download info
+2026-09-25T18:37:08.2314538Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-25T18:37:08.3579505Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-09-25T18:37:08.4745169Z Download action repository 'stefanzweifel/git-auto-commit-action@v5' (SHA:b863ae1933cb653a53c021fe36dbb774e1fb9403)
+2026-09-25T18:37:08.7667617Z Complete job name: build
+2026-09-25T18:37:08.8330620Z ##[group]Run actions/checkout@v4
+2026-09-25T18:37:08.8331450Z with:
+2026-09-25T18:37:08.8332028Z   repository: spencerhal/EpisodeCalendar
+2026-09-25T18:37:08.8336043Z   token: ***
+2026-09-25T18:37:08.8336602Z   ssh-strict: true
+2026-09-25T18:37:08.8337107Z   ssh-user: git
+2026-09-25T18:37:08.8337640Z   persist-credentials: true
+2026-09-25T18:37:08.8338242Z   clean: true
+2026-09-25T18:37:08.8338734Z   sparse-checkout-cone-mode: true
+2026-09-25T18:37:08.8339355Z   fetch-depth: 1
+2026-09-25T18:37:08.8339856Z   fetch-tags: false
+2026-09-25T18:37:08.8340386Z   show-progress: true
+2026-09-25T18:37:08.8340903Z   lfs: false
+2026-09-25T18:37:08.8341379Z   submodules: false
+2026-09-25T18:37:08.8341933Z   set-safe-directory: true
+2026-09-25T18:37:08.8342501Z   allow-unsafe-pr-checkout: false
+2026-09-25T18:37:08.8343260Z ##[endgroup]
+2026-09-25T18:37:08.9347554Z Syncing repository: spencerhal/EpisodeCalendar
+2026-09-25T18:37:08.9350558Z ##[group]Getting Git version info
+2026-09-25T18:37:08.9351899Z Working directory is '/home/runner/work/EpisodeCalendar/EpisodeCalendar'
+2026-09-25T18:37:08.9353709Z [command]/usr/bin/git version
+2026-09-25T18:37:08.9455682Z git version 2.55.0
+2026-09-25T18:37:08.9477289Z ##[endgroup]
+2026-09-25T18:37:08.9484511Z Temporarily overriding HOME='/home/runner/work/_temp/dcd80670-7277-422c-ae06-6d87fd89ff09' before making global git config changes
+2026-09-25T18:37:08.9487059Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-25T18:37:08.9489483Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EpisodeCalendar/EpisodeCalendar
+2026-09-25T18:37:08.9546902Z Deleting the contents of '/home/runner/work/EpisodeCalendar/EpisodeCalendar'
+2026-09-25T18:37:08.9567449Z ##[group]Initializing the repository
+2026-09-25T18:37:08.9576893Z [command]/usr/bin/git init /home/runner/work/EpisodeCalendar/EpisodeCalendar
+2026-09-25T18:37:08.9693661Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-25T18:37:08.9696172Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-25T18:37:08.9700650Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-25T18:37:08.9702003Z hint: call:
+2026-09-25T18:37:08.9702932Z hint:
+2026-09-25T18:37:08.9704113Z hint: 	git config --global init.defaultBranch <name>
+2026-09-25T18:37:08.9705400Z hint:
+2026-09-25T18:37:08.9706553Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-25T18:37:08.9708003Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-25T18:37:08.9709332Z hint:
+2026-09-25T18:37:08.9710125Z hint: 	git branch -m <name>
+2026-09-25T18:37:08.9711244Z hint:
+2026-09-25T18:37:08.9712337Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-25T18:37:08.9714394Z Initialized empty Git repository in /home/runner/work/EpisodeCalendar/EpisodeCalendar/.git/
+2026-09-25T18:37:08.9718485Z [command]/usr/bin/git remote add origin https://github.com/spencerhal/EpisodeCalendar
+2026-09-25T18:37:08.9784428Z ##[endgroup]
+2026-09-25T18:37:08.9786591Z ##[group]Disabling automatic garbage collection
+2026-09-25T18:37:08.9796735Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-25T18:37:08.9847798Z ##[endgroup]
+2026-09-25T18:37:08.9849351Z ##[group]Setting up auth
+2026-09-25T18:37:08.9855969Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-25T18:37:08.9895279Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-25T18:37:09.0267016Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-25T18:37:09.0301476Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-25T18:37:09.0507420Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-25T18:37:09.0536223Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-25T18:37:09.0719612Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-25T18:37:09.0757906Z ##[endgroup]
+2026-09-25T18:37:09.0759027Z ##[group]Fetching the repository
+2026-09-25T18:37:09.0766939Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +a19d549b2faef49a0b875573bbe3d619c109b8f9:refs/remotes/origin/main
+2026-09-25T18:37:09.5170653Z From https://github.com/spencerhal/EpisodeCalendar
+2026-09-25T18:37:09.5172464Z  * [new ref]         a19d549b2faef49a0b875573bbe3d619c109b8f9 -> origin/main
+2026-09-25T18:37:09.5176843Z ##[endgroup]
+2026-09-25T18:37:09.5178798Z ##[group]Determining the checkout info
+2026-09-25T18:37:09.5180740Z ##[endgroup]
+2026-09-25T18:37:09.5185365Z [command]/usr/bin/git sparse-checkout disable
+2026-09-25T18:37:09.5243225Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-25T18:37:09.5279611Z ##[group]Checking out the ref
+2026-09-25T18:37:09.5283963Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-25T18:37:09.5343222Z Switched to a new branch 'main'
+2026-09-25T18:37:09.5348824Z branch 'main' set up to track 'origin/main'.
+2026-09-25T18:37:09.5357240Z ##[endgroup]
+2026-09-25T18:37:09.5395903Z [command]/usr/bin/git log -1 --format=%H
+2026-09-25T18:37:09.5416002Z a19d549b2faef49a0b875573bbe3d619c109b8f9
+2026-09-25T18:37:09.5775822Z ##[group]Run actions/setup-python@v5
+2026-09-25T18:37:09.5777098Z with:
+2026-09-25T18:37:09.5778059Z   python-version: 3.10
+2026-09-25T18:37:09.5779097Z   check-latest: false
+2026-09-25T18:37:09.5788183Z   token: ***
+2026-09-25T18:37:09.5789368Z   update-environment: true
+2026-09-25T18:37:09.5790556Z   allow-prereleases: false
+2026-09-25T18:37:09.5791659Z   freethreaded: false
+2026-09-25T18:37:09.5792685Z ##[endgroup]
+2026-09-25T18:37:09.7114291Z ##[group]Installed versions
+2026-09-25T18:37:09.7225464Z (node:2302) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-25T18:37:09.7228606Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-25T18:37:09.7230871Z Successfully set up CPython (3.10.21)
+2026-09-25T18:37:09.7233508Z ##[endgroup]
+2026-09-25T18:37:09.7389878Z ##[group]Run pip install requests icalendar
+2026-09-25T18:37:09.7391375Z [36;1mpip install requests icalendar[0m
+2026-09-25T18:37:09.7624398Z shell: /usr/bin/bash -e {0}
+2026-09-25T18:37:09.7625829Z env:
+2026-09-25T18:37:09.7627015Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:09.7628821Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-25T18:37:09.7630635Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:09.7632242Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:09.7633978Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:09.7635650Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-25T18:37:09.7637017Z ##[endgroup]
+2026-09-25T18:37:10.9049739Z Collecting requests
+2026-09-25T18:37:10.9580574Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-09-25T18:37:10.9924632Z Collecting icalendar
+2026-09-25T18:37:10.9959321Z   Downloading icalendar-7.3.0-py3-none-any.whl.metadata (7.0 kB)
+2026-09-25T18:37:11.1153079Z Collecting charset_normalizer<4,>=2 (from requests)
+2026-09-25T18:37:11.1193239Z   Downloading charset_normalizer-3.5.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (45 kB)
+2026-09-25T18:37:11.1412226Z Collecting idna<4,>=2.5 (from requests)
+2026-09-25T18:37:11.1449402Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-09-25T18:37:11.1669991Z Collecting urllib3<3,>=1.26 (from requests)
+2026-09-25T18:37:11.1711293Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-09-25T18:37:11.1893375Z Collecting certifi>=2023.5.7 (from requests)
+2026-09-25T18:37:11.1929696Z   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+2026-09-25T18:37:11.2069531Z Collecting python-dateutil (from icalendar)
+2026-09-25T18:37:11.2103662Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-09-25T18:37:11.2281656Z Collecting typing-extensions~=4.10 (from icalendar)
+2026-09-25T18:37:11.2317398Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-09-25T18:37:11.2450809Z Collecting tzdata>=2025.3 (from icalendar)
+2026-09-25T18:37:11.2484316Z   Downloading tzdata-2026.4-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-09-25T18:37:11.2617838Z Collecting six>=1.5 (from python-dateutil->icalendar)
+2026-09-25T18:37:11.2651846Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-09-25T18:37:11.2721708Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-09-25T18:37:11.2796864Z Downloading charset_normalizer-3.5.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (261 kB)
+2026-09-25T18:37:11.2913491Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-09-25T18:37:11.2979710Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-09-25T18:37:11.3051589Z Downloading icalendar-7.3.0-py3-none-any.whl (542 kB)
+2026-09-25T18:37:11.3158580Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 542.5/542.5 kB 42.6 MB/s  0:00:00
+2026-09-25T18:37:11.3195644Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-09-25T18:37:11.3256606Z Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+2026-09-25T18:37:11.3318602Z Downloading tzdata-2026.4-py2.py3-none-any.whl (347 kB)
+2026-09-25T18:37:11.3396702Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+2026-09-25T18:37:11.3462347Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-09-25T18:37:11.5236504Z Installing collected packages: urllib3, tzdata, typing-extensions, six, idna, charset_normalizer, certifi, requests, python-dateutil, icalendar
+2026-09-25T18:37:12.0679588Z 
+2026-09-25T18:37:12.0696187Z Successfully installed certifi-2026.7.22 charset_normalizer-3.5.1 icalendar-7.3.0 idna-3.20 python-dateutil-2.9.0.post0 requests-2.34.2 six-1.17.0 typing-extensions-4.16.0 tzdata-2026.4 urllib3-2.8.0
+2026-09-25T18:37:12.1327686Z ##[group]Run python main.py
+2026-09-25T18:37:12.1328067Z [36;1mpython main.py[0m
+2026-09-25T18:37:12.1373928Z shell: /usr/bin/bash -e {0}
+2026-09-25T18:37:12.1374373Z env:
+2026-09-25T18:37:12.1374754Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:12.1375288Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-25T18:37:12.1375827Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:12.1376352Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:12.1376829Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:12.1377283Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-25T18:37:12.1377920Z   TMDB_API_KEY: ***
+2026-09-25T18:37:12.1378278Z ##[endgroup]
+2026-09-25T18:37:17.3242529Z Fetching episodes for Ted Lasso...
+2026-09-25T18:37:17.3243653Z Fetching episodes for Abbott Elementary...
+2026-09-25T18:37:17.3245070Z Fetching episodes for Daredevil: Born Again...
+2026-09-25T18:37:17.3245859Z Fetching episodes for Fallout...
+2026-09-25T18:37:17.3246565Z Fetching episodes for INVINCIBLE...
+2026-09-25T18:37:17.3247243Z Fetching episodes for Lanterns...
+2026-09-25T18:37:17.3248057Z Fetching episodes for My Adventures with Superman...
+2026-09-25T18:37:17.3248865Z Fetching episodes for Paradise...
+2026-09-25T18:37:17.3249664Z Fetching episodes for Percy Jackson and the Olympians...
+2026-09-25T18:37:17.3250530Z Fetching episodes for Pluribus...
+2026-09-25T18:37:17.3251198Z Fetching episodes for Rick and Morty...
+2026-09-25T18:37:17.3251855Z Fetching episodes for Rooster...
+2026-09-25T18:37:17.3252695Z Fetching episodes for Saturday Night Live...
+2026-09-25T18:37:17.3253451Z Fetching episodes for Shrinking...
+2026-09-25T18:37:17.3254400Z Fetching episodes for Star Wars: Maul - Shadow Lord...
+2026-09-25T18:37:17.3255188Z Fetching episodes for Adults...
+2026-09-25T18:37:17.3255799Z Fetching episodes for X-Men '97...
+2026-09-25T18:37:17.3256481Z Wrote 1487 episodes across 17 shows to tv_episode_calendar.ics
+2026-09-25T18:37:17.3609051Z ##[group]Run stefanzweifel/git-auto-commit-action@v5
+2026-09-25T18:37:17.3609466Z with:
+2026-09-25T18:37:17.3609895Z   commit_message: Automated TV Episode Calendar Update [skip ci]
+2026-09-25T18:37:17.3610377Z   file_pattern: tv_episode_calendar.ics
+2026-09-25T18:37:17.3610811Z   skip_dirty_check: false
+2026-09-25T18:37:17.3611148Z   skip_fetch: true
+2026-09-25T18:37:17.3611466Z   repository: .
+2026-09-25T18:37:17.3611821Z   commit_user_name: github-actions[bot]
+2026-09-25T18:37:17.3612321Z   commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+2026-09-25T18:37:17.3612888Z   commit_author: spencerhal <154761850+spencerhal@users.noreply.github.com>
+2026-09-25T18:37:17.3613395Z   skip_checkout: false
+2026-09-25T18:37:17.3613701Z   disable_globbing: false
+2026-09-25T18:37:17.3614239Z   create_branch: false
+2026-09-25T18:37:17.3614592Z   create_git_tag_only: false
+2026-09-25T18:37:17.3614934Z   internal_git_binary: git
+2026-09-25T18:37:17.3615268Z env:
+2026-09-25T18:37:17.3615745Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:17.3616332Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-25T18:37:17.3616819Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:17.3617593Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:17.3618053Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:17.3618635Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-25T18:37:17.3619119Z ##[endgroup]
+2026-09-25T18:37:17.3930675Z Started: bash /home/runner/work/_actions/stefanzweifel/git-auto-commit-action/v5/entrypoint.sh
+2026-09-25T18:37:17.3968319Z INPUT_REPOSITORY value: .
+2026-09-25T18:37:17.3968802Z INPUT_STATUS_OPTIONS: 
+2026-09-25T18:37:17.3969423Z INPUT_FILE_PATTERN: tv_episode_calendar.ics
+2026-09-25T18:37:17.4019931Z INPUT_BRANCH value: 
+2026-09-25T18:37:17.4041238Z Your branch is up to date with 'origin/main'.
+2026-09-25T18:37:17.4042949Z INPUT_ADD_OPTIONS: 
+2026-09-25T18:37:17.4043950Z INPUT_FILE_PATTERN: tv_episode_calendar.ics
+2026-09-25T18:37:17.4353163Z INPUT_COMMIT_OPTIONS: 
+2026-09-25T18:37:17.4354921Z INPUT_COMMIT_USER_NAME: github-actions[bot]
+2026-09-25T18:37:17.4355791Z INPUT_COMMIT_USER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+2026-09-25T18:37:17.4356374Z INPUT_COMMIT_MESSAGE: Automated TV Episode Calendar Update [skip ci]
+2026-09-25T18:37:17.4356997Z INPUT_COMMIT_AUTHOR: spencerhal <154761850+spencerhal@users.noreply.github.com>
+2026-09-25T18:37:17.4418047Z [main 75e6348] Automated TV Episode Calendar Update [skip ci]
+2026-09-25T18:37:17.4418769Z  Author: spencerhal <154761850+spencerhal@users.noreply.github.com>
+2026-09-25T18:37:17.4419223Z  1 file changed, 15406 insertions(+)
+2026-09-25T18:37:17.4419611Z  create mode 100644 tv_episode_calendar.ics
+2026-09-25T18:37:17.4436945Z INPUT_TAGGING_MESSAGE: 
+2026-09-25T18:37:17.4437643Z No tagging message supplied. No tag will be added.
+2026-09-25T18:37:17.4438616Z INPUT_PUSH_OPTIONS: 
+2026-09-25T18:37:18.0576494Z To https://github.com/spencerhal/EpisodeCalendar
+2026-09-25T18:37:18.0577332Z  ! [rejected]        main -> main (fetch first)
+2026-09-25T18:37:18.0578062Z error: failed to push some refs to 'https://github.com/spencerhal/EpisodeCalendar'
+2026-09-25T18:37:18.0584300Z hint: Updates were rejected because the remote contains work that you do not
+2026-09-25T18:37:18.0585266Z hint: have locally. This is usually caused by another repository pushing to
+2026-09-25T18:37:18.0586067Z hint: the same ref. If you want to integrate the remote changes, use
+2026-09-25T18:37:18.0586531Z hint: 'git pull' before pushing again.
+2026-09-25T18:37:18.0587060Z hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+2026-09-25T18:37:18.0602500Z Error: Invalid status code: 1
+2026-09-25T18:37:18.0603278Z     at ChildProcess.<anonymous> (/home/runner/work/_actions/stefanzweifel/git-auto-commit-action/v5/index.js:17:19)
+2026-09-25T18:37:18.0604602Z     at ChildProcess.emit (node:events:509:28)
+2026-09-25T18:37:18.0605120Z     at maybeClose (node:internal/child_process:1141:16)
+2026-09-25T18:37:18.0605651Z     at ChildProcess._handle.onexit (node:internal/child_process:306:5) {
+2026-09-25T18:37:18.0606090Z   code: 1
+2026-09-25T18:37:18.0606390Z }
+2026-09-25T18:37:18.0606841Z Error: Invalid status code: 1
+2026-09-25T18:37:18.0607421Z     at ChildProcess.<anonymous> (/home/runner/work/_actions/stefanzweifel/git-auto-commit-action/v5/index.js:17:19)
+2026-09-25T18:37:18.0608086Z     at ChildProcess.emit (node:events:509:28)
+2026-09-25T18:37:18.0608584Z     at maybeClose (node:internal/child_process:1141:16)
+2026-09-25T18:37:18.0609157Z     at ChildProcess._handle.onexit (node:internal/child_process:306:5)
+2026-09-25T18:37:18.0752922Z Post job cleanup.
+2026-09-25T18:37:18.1589505Z [command]/usr/bin/git version
+2026-09-25T18:37:18.1627260Z git version 2.55.0
+2026-09-25T18:37:18.1661119Z Temporarily overriding HOME='/home/runner/work/_temp/9efdfd0d-c2f9-4d1f-91e5-18de7f56ca59' before making global git config changes
+2026-09-25T18:37:18.1662603Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-25T18:37:18.1667702Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EpisodeCalendar/EpisodeCalendar
+2026-09-25T18:37:18.1707395Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-25T18:37:18.1739642Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-25T18:37:18.1953313Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-25T18:37:18.1978389Z http.https://github.com/.extraheader
+2026-09-25T18:37:18.1989015Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-25T18:37:18.2035013Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-25T18:37:18.2273598Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-25T18:37:18.2310047Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-25T18:37:18.2718125Z Cleaning up orphan processes
+2026-09-25T18:37:18.2966936Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, stefanzweifel/git-auto-commit-action@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

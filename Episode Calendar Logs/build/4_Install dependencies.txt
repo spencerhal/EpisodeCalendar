@@ -1,0 +1,45 @@
+﻿2026-09-25T18:37:09.7389838Z ##[group]Run pip install requests icalendar
+2026-09-25T18:37:09.7391369Z [36;1mpip install requests icalendar[0m
+2026-09-25T18:37:09.7624344Z shell: /usr/bin/bash -e {0}
+2026-09-25T18:37:09.7625815Z env:
+2026-09-25T18:37:09.7627010Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:09.7628816Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-25T18:37:09.7630631Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:09.7632239Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:09.7633967Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-25T18:37:09.7635646Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-25T18:37:09.7637013Z ##[endgroup]
+2026-09-25T18:37:10.9049665Z Collecting requests
+2026-09-25T18:37:10.9580502Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-09-25T18:37:10.9924581Z Collecting icalendar
+2026-09-25T18:37:10.9959078Z   Downloading icalendar-7.3.0-py3-none-any.whl.metadata (7.0 kB)
+2026-09-25T18:37:11.1152990Z Collecting charset_normalizer<4,>=2 (from requests)
+2026-09-25T18:37:11.1193180Z   Downloading charset_normalizer-3.5.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (45 kB)
+2026-09-25T18:37:11.1412103Z Collecting idna<4,>=2.5 (from requests)
+2026-09-25T18:37:11.1449354Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-09-25T18:37:11.1669918Z Collecting urllib3<3,>=1.26 (from requests)
+2026-09-25T18:37:11.1711243Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-09-25T18:37:11.1893318Z Collecting certifi>=2023.5.7 (from requests)
+2026-09-25T18:37:11.1929648Z   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+2026-09-25T18:37:11.2069481Z Collecting python-dateutil (from icalendar)
+2026-09-25T18:37:11.2103628Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-09-25T18:37:11.2281525Z Collecting typing-extensions~=4.10 (from icalendar)
+2026-09-25T18:37:11.2317357Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-09-25T18:37:11.2450767Z Collecting tzdata>=2025.3 (from icalendar)
+2026-09-25T18:37:11.2484276Z   Downloading tzdata-2026.4-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-09-25T18:37:11.2617809Z Collecting six>=1.5 (from python-dateutil->icalendar)
+2026-09-25T18:37:11.2651824Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-09-25T18:37:11.2721696Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-09-25T18:37:11.2796853Z Downloading charset_normalizer-3.5.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (261 kB)
+2026-09-25T18:37:11.2913474Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-09-25T18:37:11.2979693Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-09-25T18:37:11.3051578Z Downloading icalendar-7.3.0-py3-none-any.whl (542 kB)
+2026-09-25T18:37:11.3158487Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 542.5/542.5 kB 42.6 MB/s  0:00:00
+2026-09-25T18:37:11.3195623Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-09-25T18:37:11.3256591Z Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+2026-09-25T18:37:11.3318524Z Downloading tzdata-2026.4-py2.py3-none-any.whl (347 kB)
+2026-09-25T18:37:11.3396688Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+2026-09-25T18:37:11.3462337Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-09-25T18:37:11.5236454Z Installing collected packages: urllib3, tzdata, typing-extensions, six, idna, charset_normalizer, certifi, requests, python-dateutil, icalendar
+2026-09-25T18:37:12.0679525Z 
+2026-09-25T18:37:12.0696173Z Successfully installed certifi-2026.7.22 charset_normalizer-3.5.1 icalendar-7.3.0 idna-3.20 python-dateutil-2.9.0.post0 requests-2.34.2 six-1.17.0 typing-extensions-4.16.0 tzdata-2026.4 urllib3-2.8.0

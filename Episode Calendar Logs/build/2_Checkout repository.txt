@@ -1,0 +1,73 @@
+﻿2026-09-25T18:37:08.8330579Z ##[group]Run actions/checkout@v4
+2026-09-25T18:37:08.8331445Z with:
+2026-09-25T18:37:08.8332024Z   repository: spencerhal/EpisodeCalendar
+2026-09-25T18:37:08.8336034Z   token: ***
+2026-09-25T18:37:08.8336598Z   ssh-strict: true
+2026-09-25T18:37:08.8337103Z   ssh-user: git
+2026-09-25T18:37:08.8337637Z   persist-credentials: true
+2026-09-25T18:37:08.8338200Z   clean: true
+2026-09-25T18:37:08.8338730Z   sparse-checkout-cone-mode: true
+2026-09-25T18:37:08.8339352Z   fetch-depth: 1
+2026-09-25T18:37:08.8339853Z   fetch-tags: false
+2026-09-25T18:37:08.8340382Z   show-progress: true
+2026-09-25T18:37:08.8340899Z   lfs: false
+2026-09-25T18:37:08.8341376Z   submodules: false
+2026-09-25T18:37:08.8341930Z   set-safe-directory: true
+2026-09-25T18:37:08.8342497Z   allow-unsafe-pr-checkout: false
+2026-09-25T18:37:08.8343257Z ##[endgroup]
+2026-09-25T18:37:08.9347479Z Syncing repository: spencerhal/EpisodeCalendar
+2026-09-25T18:37:08.9350487Z ##[group]Getting Git version info
+2026-09-25T18:37:08.9351789Z Working directory is '/home/runner/work/EpisodeCalendar/EpisodeCalendar'
+2026-09-25T18:37:08.9353701Z [command]/usr/bin/git version
+2026-09-25T18:37:08.9455630Z git version 2.55.0
+2026-09-25T18:37:08.9477251Z ##[endgroup]
+2026-09-25T18:37:08.9484477Z Temporarily overriding HOME='/home/runner/work/_temp/dcd80670-7277-422c-ae06-6d87fd89ff09' before making global git config changes
+2026-09-25T18:37:08.9487047Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-25T18:37:08.9489474Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EpisodeCalendar/EpisodeCalendar
+2026-09-25T18:37:08.9546863Z Deleting the contents of '/home/runner/work/EpisodeCalendar/EpisodeCalendar'
+2026-09-25T18:37:08.9567410Z ##[group]Initializing the repository
+2026-09-25T18:37:08.9576855Z [command]/usr/bin/git init /home/runner/work/EpisodeCalendar/EpisodeCalendar
+2026-09-25T18:37:08.9693585Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-25T18:37:08.9696150Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-25T18:37:08.9700631Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-25T18:37:08.9701997Z hint: call:
+2026-09-25T18:37:08.9702927Z hint:
+2026-09-25T18:37:08.9704099Z hint: 	git config --global init.defaultBranch <name>
+2026-09-25T18:37:08.9705393Z hint:
+2026-09-25T18:37:08.9706548Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-25T18:37:08.9707997Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-25T18:37:08.9709327Z hint:
+2026-09-25T18:37:08.9710115Z hint: 	git branch -m <name>
+2026-09-25T18:37:08.9711233Z hint:
+2026-09-25T18:37:08.9712332Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-25T18:37:08.9714380Z Initialized empty Git repository in /home/runner/work/EpisodeCalendar/EpisodeCalendar/.git/
+2026-09-25T18:37:08.9718435Z [command]/usr/bin/git remote add origin https://github.com/spencerhal/EpisodeCalendar
+2026-09-25T18:37:08.9784391Z ##[endgroup]
+2026-09-25T18:37:08.9786570Z ##[group]Disabling automatic garbage collection
+2026-09-25T18:37:08.9796707Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-25T18:37:08.9847759Z ##[endgroup]
+2026-09-25T18:37:08.9849326Z ##[group]Setting up auth
+2026-09-25T18:37:08.9855939Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-25T18:37:08.9895228Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-25T18:37:09.0266951Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-25T18:37:09.0300914Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-25T18:37:09.0507349Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-25T18:37:09.0536167Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-25T18:37:09.0719568Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-25T18:37:09.0757870Z ##[endgroup]
+2026-09-25T18:37:09.0759012Z ##[group]Fetching the repository
+2026-09-25T18:37:09.0766902Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +a19d549b2faef49a0b875573bbe3d619c109b8f9:refs/remotes/origin/main
+2026-09-25T18:37:09.5170531Z From https://github.com/spencerhal/EpisodeCalendar
+2026-09-25T18:37:09.5172438Z  * [new ref]         a19d549b2faef49a0b875573bbe3d619c109b8f9 -> origin/main
+2026-09-25T18:37:09.5176817Z ##[endgroup]
+2026-09-25T18:37:09.5178746Z ##[group]Determining the checkout info
+2026-09-25T18:37:09.5180707Z ##[endgroup]
+2026-09-25T18:37:09.5185334Z [command]/usr/bin/git sparse-checkout disable
+2026-09-25T18:37:09.5243159Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-25T18:37:09.5279528Z ##[group]Checking out the ref
+2026-09-25T18:37:09.5283760Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-25T18:37:09.5343151Z Switched to a new branch 'main'
+2026-09-25T18:37:09.5348772Z branch 'main' set up to track 'origin/main'.
+2026-09-25T18:37:09.5357196Z ##[endgroup]
+2026-09-25T18:37:09.5395863Z [command]/usr/bin/git log -1 --format=%H
+2026-09-25T18:37:09.5415948Z a19d549b2faef49a0b875573bbe3d619c109b8f9
