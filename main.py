@@ -34,9 +34,23 @@ STREAMING_API_KEY = os.environ.get("STREAMING_AVAILABILITY_API_KEY")
 STREAMING_BASE = "https://api.movieofthenight.com/v4"
 STREAMING_COUNTRY = "us"
 
-# Preferred service when a show is on more than one, matched case-insensitively
-# against the service name.
-PREFERRED_SERVICE = "youtube tv"
+# Tie-break order when a show is natively on more than one service, best first.
+# Ids come from the streaming API's US service list. Reorder to match what you
+# actually subscribe to; anything unlisted sorts last.
+PREFERRED_SERVICES = [
+    "apple",
+    "hbo",
+    "netflix",
+    "disney",
+    "hulu",
+    "prime",
+    "peacock",
+    "paramount",
+]
+
+# TMDB names providers differently and does list YouTube TV, so the fallback
+# path keeps its own preference.
+TMDB_PREFERRED_PROVIDER = "youtube tv"
 
 # Set to True if you want season 0 (specials) included.
 INCLUDE_SPECIALS = False
@@ -83,17 +97,36 @@ def load_shows():
     return shows
 
 
-def _pick_streaming_option(options):
-    """Choose the best option: watchable on a subscription beats pay-per-view."""
-    included = [o for o in options if o.get("type") in ("subscription", "free", "addon")]
-    candidates = included or options
-    if not candidates:
-        return None
+def _option_rank(option):
+    """Sort key for streaming options, lower is better.
 
-    for option in candidates:
-        if PREFERRED_SERVICE in option.get("service", {}).get("name", "").lower():
-            return option
-    return candidates[0]
+    An "addon" entry means watching one service through another's storefront -
+    Ted Lasso shows up as The Roku Channel carrying the Apple TV+ addon - so
+    the native service has to outrank it. The API tends to return the native
+    option last, which is why order alone is a bad guide.
+    """
+    if option.get("addon") or option.get("type") == "addon":
+        tier = 1
+    elif option.get("type") in ("subscription", "free"):
+        tier = 0
+    else:
+        tier = 2  # rent or buy
+
+    service_id = option.get("service", {}).get("id", "")
+    preference = (
+        PREFERRED_SERVICES.index(service_id)
+        if service_id in PREFERRED_SERVICES
+        else len(PREFERRED_SERVICES)
+    )
+    return (tier, preference)
+
+
+def _pick_streaming_option(options):
+    """Best way to watch: native service first, then an addon, then pay-per-view."""
+    if not options:
+        return None
+    # min() is stable, so the API's own order breaks any remaining tie.
+    return min(options, key=_option_rank)
 
 
 def get_direct_streaming_link(show_id):
@@ -159,7 +192,7 @@ def get_show_watch_info(show_id):
 
             # Check for YouTube TV first
             for provider in providers:
-                if PREFERRED_SERVICE in provider.get("provider_name", "").lower():
+                if TMDB_PREFERRED_PROVIDER in provider.get("provider_name", "").lower():
                     provider_name = provider.get("provider_name")
                     link = tmdb_link
                     break
