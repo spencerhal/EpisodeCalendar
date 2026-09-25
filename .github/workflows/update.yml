@@ -45,7 +45,5 @@ jobs:
         commit_message: "Automated TV Episode Calendar Update [skip ci]"
         file_pattern: 'tv_episode_calendar.ics'
         skip_dirty_check: false
-        skip_fetch: false
-        skip_rebase: false
-
-
+        skip_fetch: true
+        skip_rebase: true
