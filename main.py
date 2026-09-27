@@ -213,12 +213,77 @@ def get_show_watch_info(show_id):
     return res
 
 
+def get_tvmaze_episode_mapping(show_id, show_name):
+    """Fetch show metadata and episode mapping from TVmaze using external IDs or single search.
+
+    Returns a dict of {(season_number, episode_number): (airstamp, runtime, is_network_show)}.
+    """
+    imdb_id = None
+    tvdb_id = None
+    try:
+        ext_ids = tmdb_get(f"/tv/{show_id}/external_ids")
+        imdb_id = ext_ids.get("imdb_id")
+        tvdb_id = ext_ids.get("tvdb_id")
+    except Exception as e:
+        print(f"  Warning: failed to fetch TMDB external IDs for {show_name}: {e}", file=sys.stderr)
+
+    tvmaze_show = None
+    if imdb_id:
+        try:
+            resp = requests.get(f"https://api.tvmaze.com/lookup/shows?imdb={imdb_id}", timeout=10)
+            if resp.status_code == 200:
+                tvmaze_show = resp.json()
+        except Exception:
+            pass
+
+    if not tvmaze_show and tvdb_id:
+        try:
+            resp = requests.get(f"https://api.tvmaze.com/lookup/shows?thetvdb={tvdb_id}", timeout=10)
+            if resp.status_code == 200:
+                tvmaze_show = resp.json()
+        except Exception:
+            pass
+
+    if not tvmaze_show and show_name:
+        try:
+            resp = requests.get("https://api.tvmaze.com/singlesearch/shows", params={"q": show_name}, timeout=10)
+            if resp.status_code == 200:
+                tvmaze_show = resp.json()
+        except Exception:
+            pass
+
+    ep_mapping = {}
+    if tvmaze_show:
+        is_network = tvmaze_show.get("network") is not None
+        tvmaze_id = tvmaze_show.get("id")
+        if tvmaze_id:
+            try:
+                resp = requests.get(f"https://api.tvmaze.com/shows/{tvmaze_id}/episodes", timeout=10)
+                if resp.status_code == 200:
+                    for ep in resp.json():
+                        s_num = ep.get("season")
+                        e_num = ep.get("number")
+                        if s_num is not None and e_num is not None:
+                            ep_mapping[(s_num, e_num)] = {
+                                "airstamp": ep.get("airstamp"),
+                                "runtime": ep.get("runtime"),
+                                "is_network": is_network
+                            }
+            except Exception as e:
+                print(f"  Warning: failed to fetch TVmaze episodes for {show_name}: {e}", file=sys.stderr)
+
+    return ep_mapping
+
+
 def fetch_show_episodes(show_id, show_name):
     """Yield episode dicts for every aired/scheduled episode of a show."""
     details = tmdb_get(f"/tv/{show_id}")
     name = show_name or details.get("name", "Unknown Show")
     seasons = details.get("seasons", [])
     watch_info = get_show_watch_info(show_id)
+
+    # Fetch TVmaze episode mapping to get specific air times for network TV
+    tvmaze_eps = get_tvmaze_episode_mapping(show_id, name)
 
     for season in seasons:
         season_number = season.get("season_number")
@@ -236,16 +301,23 @@ def fetch_show_episodes(show_id, show_name):
             air_date = ep.get("air_date")
             if not air_date:
                 continue
+
+            ep_num = ep.get("episode_number")
+            tv_info = tvmaze_eps.get((season_number, ep_num)) if tvmaze_eps else None
+
             yield {
                 "show_id": show_id,
                 "show_name": name,
                 "season_number": season_number,
-                "episode_number": ep.get("episode_number"),
+                "episode_number": ep_num,
                 "episode_name": ep.get("name") or "TBA",
                 "air_date": air_date,
                 "overview": ep.get("overview") or "",
                 "watch_link": watch_info["link"],
                 "provider": watch_info["provider"],
+                "airstamp": tv_info.get("airstamp") if tv_info else None,
+                "runtime": tv_info.get("runtime") if tv_info else None,
+                "is_network": tv_info.get("is_network") if tv_info else False,
             }
 
 
@@ -271,8 +343,29 @@ def build_calendar(all_episodes):
         event = Event()
         code = f"s{ep['season_number']}e{ep['episode_number']}"
         event.add("summary", f"{ep['show_name']} - {code}")
-        event.add("dtstart", date_obj)
-        event.add("dtend", date_obj + timedelta(days=1))
+
+        # Check if we should use a specific time block (only for live/network TV with an airstamp)
+        use_time_block = False
+        if ep.get("is_network") and ep.get("airstamp"):
+            try:
+                airstamp = ep["airstamp"]
+                if airstamp.endswith("Z"):
+                    airstamp = airstamp[:-1] + "+00:00"
+                dt_start = datetime.fromisoformat(airstamp).astimezone(timezone.utc)
+
+                runtime_mins = ep.get("runtime") or 30  # Fallback to 30 minutes
+                dt_end = dt_start + timedelta(minutes=runtime_mins)
+
+                event.add("dtstart", dt_start)
+                event.add("dtend", dt_end)
+                use_time_block = True
+            except Exception as e:
+                print(f"  Warning: failed to parse airstamp {ep.get('airstamp')} for {ep['show_name']} {code}: {e}", file=sys.stderr)
+
+        if not use_time_block:
+            event.add("dtstart", date_obj)
+            event.add("dtend", date_obj + timedelta(days=1))
+
         event.add(
             "uid",
             f"tvcal-{ep['show_id']}-{ep['season_number']}-{ep['episode_number']}@tv-calendar",
